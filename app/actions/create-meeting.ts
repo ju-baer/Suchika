@@ -141,30 +141,29 @@ async function sendMeetingInvitations(data: MeetingData & { bangladeshTime: stri
     </div>
   `
 
-  // Send email to each participant
-  for (const email of data.emails) {
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "api-key": brevoApiKey,
+  // Send email to all participants in a single API call
+  const toRecipients = data.emails.map(email => ({ email }));
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "api-key": brevoApiKey,
+    },
+    body: JSON.stringify({
+      sender: {
+        name: `${data.organizerName} via Suchika`,
+        email: data.organizerEmail,
       },
-      body: JSON.stringify({
-        sender: {
-          name: `${data.organizerName} via Suchika`,
-          email: data.organizerEmail,
-        },
-        to: [{ email }],
-        subject: `📅 Meeting Invitation: ${data.title} | Suchika`,
-        htmlContent: emailContent,
-      }),
-    })
+      to: toRecipients,
+      subject: `📅 Meeting Invitation: ${data.title} | Suchika`,
+      htmlContent: emailContent,
+    }),
+  });
 
-    if (!response.ok) {
-      const error = await response.text()
-      console.error("Brevo API error:", error)
-      throw new Error(`Failed to send email to ${email}`)
-    }
+  if (!response.ok) {
+    const error = await response.text();
+    console.error("Brevo API error:", error);
+    throw new Error("Failed to send emails to participants");
   }
 }
