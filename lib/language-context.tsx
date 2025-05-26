@@ -23,7 +23,7 @@ const translations = {
     "landing.tagline": "No Login Required • Instant Meeting Setup",
     "landing.title": "SUCHIKA",
     "landing.subtitle": "The most elegant meeting scheduler designed for",
-    "landing.forBangladesh": "Bangladesh Professionals",
+    "landing.forBangladesh": "Bangladeshi Professionals",
     "landing.scheduleButton": "Schedule a Meeting",
     "landing.stats.setupTime": "0 Seconds",
     "landing.stats.setupLabel": "Setup Time",
