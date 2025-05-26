@@ -1,4 +1,4 @@
-# 🇧🇩 Suchika — Effortless Meeting Scheduler for Bangladesh
+# Suchika — Effortless Meeting Scheduler for Bangladesh
 
 **Suchika** is a sleek, no-login meeting scheduler tailored for Bangladeshi professionals. Designed with speed, simplicity, and local relevance in mind, it lets you create and send polished meeting invitations in seconds—no account required.
 
